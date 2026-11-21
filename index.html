@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy Birthday, Chhiring 💗</title>
+<style>
+:root{--pink:#ff6f9f;--deep:#8d315c;--cream:#fff8fb}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,'Times New Roman',serif;color:#542b42;
+background:radial-gradient(circle at 10% 10%,#ffe1ed,transparent 35%),radial-gradient(circle at 90% 20%,#ffe9c9,transparent 30%),linear-gradient(135deg,#fff7fb,#ffe8f0);overflow-x:hidden}
+main{width:min(920px,94vw);margin:0 auto;padding:30px 0 48px;text-align:center}
+.kicker{letter-spacing:.22em;text-transform:uppercase;font:600 11px Arial,sans-serif;color:#b35c7e}
+h1{font-size:clamp(42px,8vw,76px);line-height:1.03;margin:14px 0 8px;color:var(--deep);font-weight:normal}
+.sub{font-size:clamp(16px,3vw,21px);margin:0 auto 24px;max-width:620px;line-height:1.6}
+.heart{color:#ed6795}
+.panel{background:#ffffffc9;border:1px solid #fff;box-shadow:0 18px 55px #a94e7220;border-radius:28px;padding:clamp(14px,3vw,28px);backdrop-filter:blur(8px)}
+.frame{position:relative;max-width:720px;margin:auto;aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:#f8dce7}
+.frame img{width:100%;height:100%;object-fit:contain;background:#241c22;display:block;transition:opacity .35s}
+.caption{font:14px Arial,sans-serif;color:#8f526d;margin:14px 0 0}
+.controls{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:20px 0 4px}
+button{border:0;border-radius:999px;padding:12px 19px;background:#f7b6ce;color:#71324f;font:600 14px Arial,sans-serif;cursor:pointer;box-shadow:0 5px 14px #9f476022}
+button.primary{background:#a74470;color:white}
+button:focus-visible{outline:3px solid #71324f;outline-offset:3px}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.dot{width:9px;height:9px;padding:0;background:#e8b4c8;box-shadow:none}
+.dot.active{background:#a74470;transform:scale(1.25)}
+.note{max-width:680px;margin:28px auto 0;font-size:clamp(17px,3vw,21px);line-height:1.8}
+.sign{margin-top:22px;color:#a74470;font-style:italic;font-size:19px}
+.footer{font:12px Arial,sans-serif;color:#a66b83;margin-top:26px}
+#surprise{display:none;margin:22px auto 0;max-width:680px;padding:18px 22px;background:#fff0f6;border:1px solid #f8d5e4;border-radius:22px;line-height:1.8}
+.spark{position:fixed;pointer-events:none;opacity:.28;color:#e875a1;animation:float 9s linear infinite}
+@keyframes float{from{transform:translateY(105vh) rotate(0)}to{transform:translateY(-15vh) rotate(300deg)}}
+@media(max-width:560px){main{padding-top:24px}.frame{aspect-ratio:3/4}.frame img{object-fit:contain}}
+</style>
+</head>
+<body>
+<div class="spark" style="left:8%;font-size:24px;animation-delay:-2s">♡</div>
+<div class="spark" style="left:88%;font-size:28px;animation-delay:-5s">✦</div>
+<div class="spark" style="left:72%;font-size:20px;animation-delay:-7s">♡</div>
+<main>
+  <div class="kicker">A little birthday surprise for you ✨</div>
+  <h1>Happy Birthday,<br><span class="heart">Chhiring</span> ♡</h1>
+  <p class="sub">To my special boy, my mayalu — a little collection of our memories. 💗</p>
+
+  <section class="panel" aria-label="Photo memories slideshow">
+    <div class="frame"><img id="photo" alt="A special memory together"></div>
+    <p class="caption" id="caption">Memory 1 of 5</p>
+    <div class="controls">
+      <button id="prev" type="button">← Previous</button>
+      <button class="primary" id="next" type="button">Next memory →</button>
+    </div>
+    <div class="dots" id="dots" aria-label="Choose a photo"></div>
+  </section>
+
+  <p class="note">
+    Happy birthday to the one who makes my days a little brighter.
+    I feel lucky to have you in my life. I hope your day is filled with
+    laughter, happiness, and all the little things that make you smile.
+    <span class="heart">♡</span>
+  </p>
+
+  <div class="controls">
+    <button class="primary" id="reveal" type="button">Tap for a little love 💌</button>
+    <button id="music" type="button">♫ Play birthday tune</button>
+  </div>
+  <section id="surprise">
+    🥹💗🌷<br>
+    No matter what the future holds, I hope we keep making beautiful memories together.
+    Thank you for being you. Keep smiling, keep shining, and never forget how special you are to me.
+    <br><strong>Have the sweetest birthday, my mayalu! 🎀</strong>
+  </section>
+  <div class="sign">With lots of love, Ritika 🌷</div>
+  <div class="footer">Made with love, just for your birthday ✨</div>
+</main>
+<script>
+const photos = [
+  "https://raw.githubusercontent.com/ritikakhatri0101-web/Chhiringbirthday/main/photo1",
+  "https://raw.githubusercontent.com/ritikakhatri0101-web/Chhiringbirthday/main/photo2",
+  "https://raw.githubusercontent.com/ritikakhatri0101-web/Chhiringbirthday/main/photo3",
+  "https://raw.githubusercontent.com/ritikakhatri0101-web/Chhiringbirthday/main/photo4",
+  "https://raw.githubusercontent.com/ritikakhatri0101-web/Chhiringbirthday/main/photo5"
+];
+let current=0;
+const photo=document.getElementById('photo');
+const caption=document.getElementById('caption');
+const dots=document.getElementById('dots');
+function showPhoto(n){
+  current=(n+photos.length)%photos.length;
+  photo.style.opacity='0';
+  setTimeout(()=>{photo.src=photos[current];photo.style.opacity='1';},120);
+  caption.textContent=`Memory ${current+1} of ${photos.length}`;
+  [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+photos.forEach((_,i)=>{const b=document.createElement('button');b.className='dot';b.setAttribute('aria-label',`Show photo ${i+1}`);b.onclick=()=>showPhoto(i);dots.appendChild(b);});
+document.getElementById('prev').onclick=()=>showPhoto(current-1);
+document.getElementById('next').onclick=()=>showPhoto(current+1);
+document.getElementById('reveal').onclick=()=>{document.getElementById('surprise').style.display='block';};
+photo.onerror=()=>{caption.textContent=`Memory ${current+1} could not load. Please check the photo file.`;};
+showPhoto(0);
+
+let audioCtx=null,oscillators=[],playing=false;
+function playTune(){
+  const AudioContext=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContext)return;
+  if(playing){oscillators.forEach(o=>{try{o.stop()}catch(e){}});oscillators=[];playing=false;document.getElementById('music').textContent='♫ Play birthday tune';return;}
+  audioCtx=audioCtx||new AudioContext();audioCtx.resume();
+  const notes=[523.25,587.33,659.25,523.25,698.46,659.25,587.33,523.25];
+  notes.forEach((freq,i)=>{const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,audioCtx.currentTime+i*.28);gain.gain.exponentialRampToValueAtTime(.08,audioCtx.currentTime+i*.28+.03);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+i*.28+.24);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(audioCtx.currentTime+i*.28);osc.stop(audioCtx.currentTime+i*.28+.25);oscillators.push(osc);});
+  playing=true;document.getElementById('music').textContent='♫ Playing birthday tune';
+  setTimeout(()=>{playing=false;document.getElementById('music').textContent='♫ Play birthday tune';},notes.length*280+400);
+}
+document.getElementById('music').onclick=playTune;
+</script>
+</body>
+</html>
